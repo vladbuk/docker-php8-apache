@@ -23,6 +23,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-RUN usermod -u 1000 www-data
+RUN usermod -u 1000 www-data && chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
