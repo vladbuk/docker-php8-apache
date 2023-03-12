@@ -9,8 +9,8 @@ services:
     #user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     ports:
       - '8080:80'
-    volumes:
-      - $PWD/app:/var/www/html
+    #volumes:
+    #  - $PWD/app:/var/www/html
     networks:
       - laravel-net
 
@@ -26,7 +26,7 @@ services:
     ports: 
       - '127.0.0.1:5433:5432'
     volumes:
-      - $PWD/postgres-data:/var/lib/postgresql/data
+      - app-postgres-data:/var/lib/postgresql/data
     networks:
       - laravel-net
 
@@ -36,10 +36,14 @@ services:
     ports:
       - '127.0.0.1:6380:6379'
     volumes:
-      - $PWD/redis-data:/var/lib/redis/data
+      - app-redis-data:/var/lib/redis/data
     networks:
       - laravel-net
 
 networks:
   laravel-net:
     driver: bridge
+
+volumes:
+  app-postgres-data:
+  app-redis-data:

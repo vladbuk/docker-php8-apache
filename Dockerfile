@@ -15,6 +15,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
 
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
+COPY ./app /var/www/html
+
 # Install composer from the official image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
