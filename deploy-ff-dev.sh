@@ -10,5 +10,6 @@ git restore .
 git pull
 git status
 cd ..
-docker-compose up -d --build --remove-orphans --force-recreate web
+#docker-compose up -d --build --remove-orphans --force-recreate web
+docker-compose up -d --build --remove-orphans web
 docker exec ff_dev_web /var/www/html/deploy.sh
