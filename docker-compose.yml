@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   web:
-    container_name: app_web
+    container_name: ff_dev_web
     build:
       context: .
     #user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
@@ -12,15 +12,15 @@ services:
     #volumes:
     #  - $PWD/app:/var/www/html
     networks:
-      - laravel-net
+      - ff_dev_net
 
   postgres:
-    container_name: app_postgres
+    container_name: ff_dev_postgres
     image: postgres:15.0
     #user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     environment:
       PGPASSWORD: password
-      POSTGRES_DB: appdb
+      #POSTGRES_DB: appdb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports: 
@@ -28,20 +28,20 @@ services:
     volumes:
       - app-postgres-data:/var/lib/postgresql/data
     networks:
-      - laravel-net
+      - ff_dev_net
 
   redis:
-    container_name: app_redis
+    container_name: ff_dev_redis
     image: redis:6.2
     ports:
       - '127.0.0.1:6479:6379'
     volumes:
       - app-redis-data:/var/lib/redis/data
     networks:
-      - laravel-net
+      - ff_dev_net
 
 networks:
-  laravel-net:
+  ff_dev_net:
     driver: bridge
     ipam:
       config:
