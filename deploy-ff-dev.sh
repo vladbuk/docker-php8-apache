@@ -3,7 +3,7 @@
 # pull code from repo, rebuild and restart container
 # second part of a deploy script running in container (deploy.sh)
 #
-WORKDIR=/home/deploy/flatflow_back_docker/app
+WORKDIR=$PWD/app
 cd $WORKDIR
 git switch dev
 git restore .
