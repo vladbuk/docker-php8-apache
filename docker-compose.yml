@@ -43,6 +43,9 @@ services:
 networks:
   laravel-net:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.1.0/24
 
 volumes:
   app-postgres-data:
