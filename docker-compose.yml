@@ -20,7 +20,7 @@ services:
     #user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     environment:
       PGPASSWORD: password
-      #POSTGRES_DB: appdb
+      POSTGRES_DB: appdb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports: 
@@ -29,6 +29,22 @@ services:
       - app-postgres-data:/var/lib/postgresql/data
     networks:
       - ff_dev_net
+
+  postgres-test:
+    container_name: ff_dev_postgres_test
+    image: postgres:15.0
+    environment:
+      PGPASSWORD: password
+      POSTGRES_DB: appdb_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - '127.0.0.1:5632:5432'
+    volumes:
+      - app-postgres-test-data:/var/lib/postgresql/data
+    networks:
+      - ff_dev_net
+
 
   redis:
     container_name: ff_dev_redis
@@ -49,4 +65,5 @@ networks:
 
 volumes:
   app-postgres-data:
+  app-postgres-test-data:
   app-redis-data:
